@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claim Details</title>
+    <link rel="stylesheet" href="view_claim.css">
+</head>
+<body>
+
+<div class="claim-details-container">
+    <h1>Claim Details for ID: {{ claim.id }}</h1>
+    
+    <!-- Parallel Display of Claim Information -->
+    <div class="claim-info-grid">
+        <div>
+            <h2>Claim Information</h2>
+            <p><strong>Claim Type:</strong> {{ claim.claim_type }}</p>
+            <p><strong>Claim Date:</strong> {{ claim.claim_date.strftime('%Y-%m-%d') }}</p>
+            <p><strong>Policy Number:</strong> {{ claim.customer_id }}</p>
+            <p><strong>Proposer Name:</strong> {{ claim.proposer_name }}</p>
+        </div>
+
+        <div>
+            <h2>Patient Details</h2>
+            <p><strong>Patient Name:</strong> {{ claim.patient_name }}</p>
+            <p><strong>Patient Gender:</strong> {{ claim.patient_gender }}</p>
+            <p><strong>Patient Date of Birth:</strong> {{ claim.patient_dob.strftime('%Y-%m-%d') }}</p>
+            <p><strong>Relationship to Proposer:</strong> {{ claim.patient_relationship }}</p>
+        </div>
+
+        <div>
+            <h2>Medical Details</h2>
+            <p><strong>Diagnosis:</strong> {{ claim.diagnosis }}</p>
+            <p><strong>Procedure Type:</strong> {{ claim.procedure_type }}</p>
+            <p><strong>Admission Date:</strong> {{ claim.admission_date.strftime('%Y-%m-%d') }}</p>
+            <p><strong>Discharge Date:</strong> {{ claim.discharge_date.strftime('%Y-%m-%d') }}</p>
+            <p><strong>Type of Admission:</strong> {{ claim.admission_type }}</p>
+        </div>
+
+        <div>
+            <h2>Financial Details</h2>
+            <p><strong>Hospitalization Expenses:</strong> ${{ claim.hospitalization_expenses }}</p>
+            <p><strong>Pre-hospitalization Expenses:</strong> ${{ claim.pre_hospitalization_expenses or 0 }}</p>
+            <p><strong>Post-hospitalization Expenses:</strong> ${{ claim.post_hospitalization_expenses or 0 }}</p>
+            <p><strong>Ambulance Charges:</strong> ${{ claim.ambulance_charges or 0 }}</p>
+            <p><strong>Total Expenses:</strong> ${{ claim.total_expenses }}</p>
+        </div>
+    </div>
+
+    <!-- Document Download Section -->
+    <div class="document-section">
+        <h2>Documents for Verification</h2>
+        <ul>
+            <li><a href="{{ url_for('static', filename='documents/' + claim.final_bill) }}" download>Download Final Bill</a></li>
+            <li><a href="{{ url_for('static', filename='documents/' + claim.diagnostic_reports) }}" download>Download Diagnostic Reports</a></li>
+            <li><a href="{{ url_for('static', filename='documents/' + claim.prescriptions) }}" download>Download Prescriptions</a></li>
+            {% if claim.accident_report %}
+                <li><a href="{{ url_for('static', filename='documents/' + claim.accident_report) }}" download>Download Accident Report</a></li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <!-- Validation Actions -->
+    <div class="actions">
+        <button onclick="approveClaim({{ claim.id }})" class="approve-btn">Approve Claim</button>
+        <button onclick="rejectClaim({{ claim.id }})" class="reject-btn">Reject Claim</button>
+    </div>
+</div>
+
+<script>
+    function approveClaim(claimId) {
+        alert("Claim " + claimId + " approved.");
+    }
+
+    function rejectClaim(claimId) {
+        alert("Claim " + claimId + " rejected.");
+    }
+</script>
+
+</body>
+</html>

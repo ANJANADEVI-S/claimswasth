@@ -1,0 +1,109 @@
+/* Basic page styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container for claim details */
+.claim-details-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Title and section headings */
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #007bff;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Claim info grid layout */
+.claim-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Document download section styling */
+.document-section {
+    margin-top: 30px;
+}
+
+.document-section h2 {
+    font-size: 20px;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.document-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.document-section li {
+    margin: 5px 0;
+}
+
+.document-section a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.document-section a:hover {
+    text-decoration: underline;
+}
+
+/* Actions button styling */
+.actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    justify-content: center;
+}
+
+.approve-btn, .reject-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.approve-btn {
+    background-color: #28a745;
+}
+
+.approve-btn:hover {
+    background-color: #218838;
+}
+
+.reject-btn {
+    background-color: #dc3545;
+}
+
+.reject-btn:hover {
+    background-color: #c82333;
+}
+
+/* Responsive styling */
+@media (max-width: 600px) {
+    .claim-info-grid {
+        grid-template-columns: 1fr;
+    }
+}
